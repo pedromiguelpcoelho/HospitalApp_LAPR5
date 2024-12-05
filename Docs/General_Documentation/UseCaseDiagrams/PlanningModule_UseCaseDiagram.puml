@@ -1,0 +1,32 @@
+﻿@startuml
+title Use Case Diagram - Planning Module
+
+left to right direction
+
+actor Admin #F0E68C
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+
+    usecase "Obtain the better scheduling of a set of operations (surgeries) in a certain operation room in a specific day" as UC29 #F0E68C
+    Admin --> UC29
+
+    usecase "Know the dimension in terms of number of surgeries is possible to ask for the better solutioneration room in a specific day" as UC30 #F0E68C
+    Admin --> UC30
+
+    usecase "Obtain a good schedule, not necessarily the better, in useful time to be adopted" as UC31 #F0E68C
+    Admin --> UC31
+}
+
+@enduml

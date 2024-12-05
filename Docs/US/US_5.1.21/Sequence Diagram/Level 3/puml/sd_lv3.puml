@@ -1,0 +1,47 @@
+@startuml Level 3 Sequence Diagram for US 5.1.21
+actor Admin
+participant OperationTypeController as Controller
+participant OperationTypeService as Service
+participant OperationTypeRepository as Repository
+participant OperationType as OperationType
+
+activate Admin
+activate Controller
+
+Admin -> Controller: ask to edit existing operation type (GET: editOperationType)
+Controller -> Service: getOperationTypeById (operationTypeId)
+activate Service
+
+Service -> Repository: getOperationTypeById (operationTypeId)
+activate Repository
+Repository --> Service: return operation type instance
+deactivate Repository
+
+Service --> Controller: return operation type instance
+deactivate Service
+
+Controller --> Admin: show operation type details and ask for new details
+
+Admin -> Controller: submit updated operation type details (POST: updateOperationType)
+Controller -> Service: updateOperationType (id, name, required staff, duration)
+activate Service
+
+Service -> Repository: check if operation type already exists (excluding current)
+activate Repository
+Repository --> Service: operation type does not exist
+
+Service -> OperationType: update instance with new details
+activate OperationType
+OperationType --> Service: return updated instance
+
+Service -> Repository: save updated operation type
+Repository --> Service: updated operation type saved
+deactivate Repository
+
+Service --> Controller: return success response
+deactivate Service
+
+Controller --> Admin: show success message
+deactivate Controller
+deactivate Admin
+@enduml

@@ -1,0 +1,89 @@
+#type-form {
+    display: flex;
+    flex-direction: column;
+    width: 90vw; /* Aumenta a largura para ocupar mais espaço em telas pequenas */
+    max-width: 600px;
+    margin: 20px auto; /* Adiciona margem vertical */
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: flex-start;
+    gap: 15px; /* Espaçamento consistente entre os elementos */
+}
+
+#type-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem; /* Tamanho de fonte relativo para melhor escalabilidade */
+    width: 100%;
+}
+
+#type-form input[type="text"],
+#type-form input[type="number"],
+#type-form textarea,
+#type-form button {
+    margin: 0; /* Remove margem redundante */
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem; /* Fonte relativa */
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#type-form input[type="text"]:focus,
+#type-form input[type="number"]:focus,
+#type-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adiciona sombra ao foco */
+}
+
+#type-form textarea {
+    resize: vertical; /* Permite redimensionar apenas verticalmente */
+    min-height: 100px; /* Define um tamanho mínimo */
+}
+
+#type-form button {
+    background-color: #000; /* Cor de fundo preta */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#type-form button:hover {
+    background-color: #333; /* Sombra mais escura ao passar o mouse */
+}
+
+#type-form p {
+    color: red;
+    text-align: center;
+    font-size: 0.875rem; /* Fonte menor */
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    #type-form {
+        padding: 20px; /* Ajusta o preenchimento para telas menores */
+    }
+
+    #type-form h2 {
+        font-size: 1.25rem; /* Diminui o tamanho do título em telas menores */
+    }
+
+    #type-form input[type="text"],
+    #type-form input[type="number"],
+    #type-form textarea,
+    #type-form button {
+        font-size: 0.9rem; /* Reduz o tamanho da fonte em telas menores */
+    }
+}

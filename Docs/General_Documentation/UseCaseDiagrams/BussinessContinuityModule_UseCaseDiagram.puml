@@ -1,0 +1,55 @@
+﻿@startuml
+title Use Case Diagram - Bussiness Countinuity Module
+
+left to right direction
+
+actor Admin #F0E68C
+actor User #F0E68C
+actor Patient #F0E68C
+actor Doctor #F0E68C
+actor HealthCareStaff #F0E68C
+actor SystemAdministrator #F0E68C
+actor Entity #F0E68C
+actor System #F0E68C
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+   
+    usecase "I want the deployment of one of the RFP modules in a DEI VM to be systematic, validating it on a scheduled basis with the test plan." as UC32 #F0E68C
+    SystemAdministrator --> UC32
+
+    usecase "r, I only want clients on the DEI's internal network (wired or via VPN) to be able to access the solution" as UC33 #F0E68C
+    SystemAdministrator --> UC33
+
+    usecase ", I want the clients listed in the requirement 6.3.2 to be able to be defined by simply changing a text file." as UC34 #F0E68C
+    SystemAdministrator --> UC34
+
+    usecase "I want to identify and quantify the risks involved in the recommended solution" as UC35 #F0E68C
+    Admin --> UC35
+
+    usecase "I want to define the MBCO (Minimum Business Continuity Objective) to propose to stakeholders" as UC36 #F0E68C
+    SystemAdministrator --> UC36
+
+    usecase "r, I want a backup strategy to be proposed, justified and implemented that minimizes RPO (Recovery Point Objective) and WRT (Work Recovery Time)." as UC37 #F0E68C
+    SystemAdministrator --> UC37
+
+    usecase "r I want to define a public folder for all users registered on the system, where they can read whatever is placed there" as UC38 #F0E68C
+    SystemAdministrator --> UC38
+
+    usecase "I want to get users with more than 3 incorrect accesses attempts" as UC39 #F0E68C
+    SystemAdministrator --> UC39
+
+}
+
+@enduml

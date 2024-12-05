@@ -1,0 +1,102 @@
+﻿.list-patient-profile-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list-patient-profile-container h1 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-bar selectt,
+.search-bar input[type="text"],
+.search-bar input[type="date"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 300px;
+    transition: border-color 0.3s ease;
+}
+
+.search-bar selectt:focus,
+.search-bar input[type="text"]:focus,
+.search-bar input[type="date"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.patient-profiles-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.patient-profile-card {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.patient-profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.patient-profile-card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333333;
+}
+
+.selected-profile-details {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.selected-profile-details h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.selected-profile-details p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333333;
+}
+
+select {
+    padding: 10px;
+    border-radius: 7px;
+    width: 100%;
+}

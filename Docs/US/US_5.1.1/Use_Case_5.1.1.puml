@@ -1,0 +1,13 @@
+﻿@startuml
+title Use Case Diagram 5.1.1
+left to right direction
+
+actor Admin
+
+   usecase "Register a new User" as UC1.1
+   Admin --> UC1.1
+   usecase "Send a setup link via email to activate an account" as UC1.2
+   Admin --> UC1.2
+
+   
+@enduml

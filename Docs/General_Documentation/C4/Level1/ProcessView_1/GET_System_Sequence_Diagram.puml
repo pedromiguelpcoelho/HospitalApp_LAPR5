@@ -1,0 +1,16 @@
+﻿@startuml
+title System Sequence Diagram - Generic GET 
+
+actor "User" as user #AFEEEE 
+participant "System" as system #F0E68C 
+
+user -> system: Ask for entity by attribute
+activate system
+
+system -> system: Retrieve resource by attribute
+system -> system: Convert resource to DTO
+
+system --> user: Entity Data
+deactivate system
+
+@enduml

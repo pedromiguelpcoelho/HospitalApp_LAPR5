@@ -1,0 +1,79 @@
+﻿@startuml
+title  Sequence Diagram - Generic PUT 
+
+actor "User" as user #AFEEEE
+participant "UI" as ui <<interface>> #F0E68C
+participant "Controller" as controller <<application>> #F0E68C
+participant "Service" as service <<domain>> #F0E68C
+participant "Repository" as repo <<repository>> #F0E68C
+participant "Entity" as entity <<entity>> #F0E68C
+participant "DTO" as dto <<dto>> #F0E68C
+database "Database" as db #F0E68C
+
+user -> ui: Asks to update entity
+activate ui #E8E8E8
+
+ui -> controller: PUT /api/resource/{attribute}
+activate controller #E8E8E8
+
+controller -> service: UpdateResource(attribute, dto)
+activate service #E8E8E8
+
+service -> repo: FindByAttribute(attribute)
+activate repo #E8E8E8
+
+repo -> db: Query entity by Attribute
+activate db #E8E8E8
+
+db --> repo: Entity
+deactivate db
+
+repo --> service: Entity
+deactivate repo
+
+service -> entity: Update entity with DTO
+activate entity  #E8E8E8
+ 
+entity --> service: Updated entity
+deactivate entity 
+
+service -> repo: Save updated entity
+activate repo #E8E8E8
+
+repo -> db: Update entity
+activate db #E8E8E8
+
+db --> repo: Entity updated
+deactivate db
+
+repo --> service: Updated entity
+deactivate repo
+
+service -> repo: Log updated event
+activate repo #E8E8E8
+
+repo -> db: Insert log entry
+activate db #E8E8E8
+
+db --> repo: Log entry inserted
+deactivate db
+
+repo --> service: Log entry confirmed
+deactivate repo
+
+service -> dto: Convert updated entity to DTO
+activate dto #E8E8E8
+
+dto --> service: ResourceDTO
+deactivate dto
+
+service --> controller: ResourceDTO
+deactivate service
+
+controller --> ui: 200 OK (ResourceDTO)
+deactivate controller
+
+ui --> user: Update Confirmation
+deactivate ui
+
+@enduml

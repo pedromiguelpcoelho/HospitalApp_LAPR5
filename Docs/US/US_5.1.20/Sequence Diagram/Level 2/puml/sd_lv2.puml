@@ -1,0 +1,43 @@
+@startuml Level 2 Sequence Diagram for US 5.1.20
+actor Admin
+participant Controller as Controller
+participant Service as Service
+participant Repository as Repository
+participant Event as Event
+participant EventHandler as EventHandler
+participant Logger as Logger
+
+activate Admin
+activate Controller
+
+Admin -> Controller: ask to add new operation type
+Controller --> Admin: shows form to add new operation type
+
+Admin -> Controller: submit form with new operation type details
+Controller -> Service: validate and process operation type data
+activate Service
+
+Service -> Repository: check if operation type already exists
+activate Repository
+Repository --> Service: operation type does not exist
+
+Service -> Repository: save new operation type
+Repository --> Service: operation type saved
+deactivate Repository
+
+Service -> Event: create OperationTypeCreatedEvent
+activate Event
+Event --> Service: event created
+deactivate Event
+
+Service -> EventHandler: handle OperationTypeCreatedEvent
+activate EventHandler
+EventHandler -> Logger: log information about the event
+deactivate EventHandler
+
+Service --> Controller: return success response
+deactivate Service
+
+Controller --> Admin: shows success message
+deactivate Controller
+@enduml

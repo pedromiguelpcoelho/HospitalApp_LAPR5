@@ -1,0 +1,37 @@
+@startuml
+actor Admin
+participant OperationTypeController
+participant OperationTypeService
+participant OperationTypeRepository
+
+activate Admin
+activate OperationTypeController
+
+Admin -> OperationTypeController: Request to edit operation type
+activate OperationTypeService
+OperationTypeController -> OperationTypeService: Fetch list of operation types
+activate OperationTypeRepository
+OperationTypeService -> OperationTypeRepository: Query all operation types
+OperationTypeRepository --> OperationTypeService: Return operation types
+deactivate OperationTypeRepository
+OperationTypeService --> OperationTypeController: Return operation types
+deactivate OperationTypeService
+OperationTypeController --> Admin: Shows list of operation types
+
+Admin -> OperationTypeController: Select operation type to deactivate
+activate OperationTypeService
+OperationTypeController -> OperationTypeService: Request to deactivate operation type
+activate OperationTypeRepository
+OperationTypeService -> OperationTypeRepository: Fetch operation type by ID
+OperationTypeRepository --> OperationTypeService: Return operation type
+
+OperationTypeService -> OperationTypeRepository: Mark operation type as inactive
+OperationTypeRepository --> OperationTypeService: Confirm deactivation
+deactivate OperationTypeRepository
+OperationTypeService --> OperationTypeController: Confirm deactivation
+deactivate OperationTypeService
+OperationTypeController --> Admin: Show success message
+deactivate OperationTypeController
+deactivate Admin
+
+@enduml

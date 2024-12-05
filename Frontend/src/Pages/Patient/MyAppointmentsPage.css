@@ -1,0 +1,74 @@
+/* MyAppointmentsPage.css */
+.my-appointments-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.my-appointments-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.my-appointments-container button:hover {
+    background-color: #45a049;
+}
+
+.my-appointments-container p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.my-appointments-container .appointments-list {
+    margin-top: 30px;
+}
+
+/* Appointments List Styles */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul li h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+ul li p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+ul li strong {
+    color: #333;
+}
+
+ul li:last-child {
+    margin-bottom: 0;
+}
+
+ul li p {
+    font-size: 14px;
+    color: #666;
+}

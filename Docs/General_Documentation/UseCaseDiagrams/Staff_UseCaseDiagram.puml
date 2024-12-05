@@ -1,0 +1,35 @@
+@startuml
+title Use Case Diagram - Staff
+
+left to right direction
+
+actor Admin #F0E68C
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+
+    usecase "Create a new staff profile" as UC12
+   Admin --> UC12
+
+   usecase "Edit a staff´s profile" as UC13
+   Admin --> UC13
+
+   usecase "Deactivate a staff profile" as UC14
+   Admin --> UC14
+
+   usecase "List/search staff profiles" as UC15
+   Admin --> UC15
+}
+
+@enduml

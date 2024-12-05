@@ -1,0 +1,21 @@
+
+//As an Admin, I want to add new types of operations,
+ so that I can reflect the available medical 
+ procedures in the system. (#20)
+
+
+@startuml Level 1 Sequence Diagram for US 5.1.20
+actor Admin
+participant Backend
+
+activate Admin
+activate Backend
+Admin -> Backend: ask to add new operation type
+Backend --> Admin: shows form to add new operation type
+
+Admin -> Backend: fills form with operation type details
+
+Backend --> Admin: shows success message
+
+
+@enduml

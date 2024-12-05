@@ -1,0 +1,36 @@
+@startuml
+title Use Case Diagram - Operation Request
+
+left to right direction
+
+actor Doctor #F0E68C
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+
+   usecase "Request a new Operation" as UC16 #F0E68C 
+   Doctor --> UC16
+   
+   usecase "Update an Operation Requisition" as UC17 #F0E68C 
+   Doctor --> UC17
+   
+   usecase "Remove an Operation Requisition" as UC18 #F0E68C 
+   Doctor --> UC18
+   
+   usecase "List/Search Operation Requisitions" as UC19 #F0E68C 
+    Doctor --> UC19
+
+}
+
+@enduml

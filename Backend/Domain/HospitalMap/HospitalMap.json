@@ -1,0 +1,38 @@
+{
+    "groundTextureUrl": "./textures/ground.jpeg",
+    "wallTextureUrl": "./textures/wall.png",
+    "doorTextureUrl": "./textures/Doors/hallwayDoor.png",
+    "surgeryRoomDoorTextureUrl": "./textures/Doors/surgeryRoomDoor.png",
+    "bedTextureUrl": "./textures/HospitalBed.obj",
+    "aderecoTextureUrl": "./textures/adereco.obj",
+    "patientTextureUrl": "./textures/Patient/patient_colors.png",
+    "patientModelOBJUrl": "./textures/Patient/model.obj",
+    "surgeonModelOBJUrl": "./textures/Surgeon/surgeonModel.obj",
+    "surgeonTextureUrl": "./textures/Surgeon/surgeonTex.png",
+    "troleyModelOBJUrl": "./textures/Troley/MedicalTrolley.obj",
+    "troleyTextureUrl": "./textures/Troley/TexSheet8_low_DefaultMaterial_Height.png",
+    "tweezerTextureUrl": "./textures/tweezer.obj",
+    "syringeTextureUrl": "./textures/syringe.fbx",
+
+
+    "size": { "width": 11, "height": 12 },
+    "map": [ 
+
+        [3, 2, 2, 2, 3, 5, 2, 3, 2, 2, 2, 1],
+        [1, 0, 0, 0, 6, 0, 0, 6, 0, 0, 0, 1],
+        [1, 0, 4, 0, 6, 0, 0, 6, 0, 4, 0, 1],
+        [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1],
+
+        [3, 2, 2, 2, 1, 0, 0, 3, 2, 2, 2, 1],
+        [1, 0, 0, 0, 6, 0, 0, 6, 0, 0, 0, 1],
+        [1, 0, 4, 0, 6, 0, 0, 6, 0, 4, 0, 1],
+        [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1],
+
+        [3, 2, 2, 2, 1, 0, 0, 3, 2, 2, 2, 1],
+        [1, 0, 0, 0, 6, 0, 0, 6, 0, 0, 0, 1],
+        [1, 0, 4, 0, 6, 0, 0, 6, 0, 4, 0, 1],
+        [1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1],
+        [2, 2, 2, 2, 2, 5, 2, 2, 2, 2, 2, 0]
+
+    ]
+}

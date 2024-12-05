@@ -1,0 +1,40 @@
+@startuml
+class OperationType {
+  - Long id
+  - String name
+  - List<Staff> requiredStaff
+  - int estimatedDuration
+
+  + void updateDetails(String name, List<Staff> requiredStaff, int estimatedDuration)
+}
+
+class OperationTypeController {
+  + Response addOperationType(OperationTypeDTO jsonData)
+  + Response editOperationType(Long id, OperationTypeDTO jsonData)
+}
+
+class OperationTypeService {
+  + OperationType validateAndProcessOperationType(OperationTypeDTO operationData)
+  + void saveOperationType(OperationType operationType)
+  + boolean checkIfOperationTypeExists(String name, Long excludedId)
+  + OperationType getOperationTypeById(Long id)
+  + void updateOperationType(OperationType operationType, OperationTypeDTO operationData)
+}
+
+class OperationTypeRepository {
+  + OperationType findByNameAndExcludedId(String name, Long excludedId)
+  + OperationType findById(Long id)
+  + void save(OperationType operationType)
+}
+
+class OperationTypeDTO {
+  - String name
+  - List<String> requiredStaff
+  - int estimatedDuration
+}
+
+OperationTypeController --> OperationTypeService
+OperationTypeService --> OperationTypeRepository
+OperationTypeService --> OperationType
+OperationTypeRepository --> OperationType
+@enduml

@@ -1,0 +1,39 @@
+@startuml Level 2 Sequence Diagram for Adding Operation Type (Frontend)
+actor Admin
+participant LoginPage as LoginPage
+participant AddOperationTypePage as AddOperationTypePage
+participant OperationTypeForm as OperationTypeForm
+participant API as Backend
+
+activate Admin
+Admin -> LoginPage: Enter email and password
+activate LoginPage
+LoginPage -> Backend: POST /api/auth/login-username
+activate Backend
+Backend --> LoginPage: Return token, role, and name
+deactivate Backend
+
+LoginPage -> localStorage: Store token, role, and name
+LoginPage -> Admin: Redirect to AddOperationTypePage
+deactivate LoginPage
+
+Admin -> AddOperationTypePage: Navigate to AddOperationTypePage
+activate AddOperationTypePage
+AddOperationTypePage -> Backend: GET /api/staff/all
+activate Backend
+Backend --> AddOperationTypePage: Return list of staff members
+deactivate Backend
+
+Admin -> OperationTypeForm: Fill form with operation type details
+activate OperationTypeForm
+OperationTypeForm -> AddOperationTypePage: Submit form
+deactivate OperationTypeForm
+AddOperationTypePage -> Backend: POST /api/operationTypes
+activate Backend
+Backend --> AddOperationTypePage: Return success message
+deactivate Backend
+
+AddOperationTypePage -> Admin: Display success message
+deactivate AddOperationTypePage
+deactivate Admin
+@enduml

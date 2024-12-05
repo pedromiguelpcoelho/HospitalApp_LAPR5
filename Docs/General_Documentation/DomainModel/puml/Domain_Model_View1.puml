@@ -1,0 +1,32 @@
+﻿@startuml
+title "Domain Model - View 1"
+hide empty members
+
+class User #FAA57A
+class Patient #98FB98
+class Staff #87CEFA
+class OperationRequest #DDA0DD
+class OperationType #AFEEEE
+class Appointment #F0E68C
+class SurgeryRoom #D8BFD8
+class Specialization #B0C4DE
+'class Schedule
+
+User "1" --> "1" Patient : can be a 
+User "1" --> "1" Staff: can be a 
+
+Staff "1" --> "1...*" OperationRequest: makes an (doctor)
+Staff "1" ---> "1...*"Specialization: has a
+Patient "1" ---> "1...*" OperationRequest: has an
+
+OperationType "1" <-up- "1...*" OperationRequest: for a
+OperationType "0...*" --> "1..*" Specialization : requests a
+OperationRequest "1" --> "1" Appointment: sets an
+Appointment "1...*" --> "1" SurgeryRoom: has a 
+
+Appointment "0...*" --> "1...*" Staff : requests
+'Schedule -- SurgeryRoom 
+'Schedule -- Appointment
+'Schedule -- Staff
+
+@enduml

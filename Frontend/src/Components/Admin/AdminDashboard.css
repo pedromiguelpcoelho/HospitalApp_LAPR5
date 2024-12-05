@@ -1,0 +1,109 @@
+.admin-dashboard {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Sidebar width set to 300px */
+    width: 90vw;
+    height: 90vh;
+    background-color: #ffffff;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden; /* Prevent scrolling on the main container */
+}
+
+.sidebar {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    border-radius: 15px 0 0 15px; /* Rounded only on left side */
+    position: relative; /* Needed for the pseudo-element */
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow vertical scrolling */
+    height: 100%; /* Ensure the sidebar takes full height */
+    border-right: 1px solid #000000; /* Add a border to the right side */
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.sidebar p {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.section {
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.section h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    color: #000000;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+    text-align: center; /* Center the text */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.sidebar li {
+    margin: 8px 0;
+}
+
+.sidebar a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 1em;
+    display: block;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    background-color: #f5f5f5;
+}
+
+.logout-button {
+    margin-top: auto;
+    padding: 12px 15px;
+    background-color: #000000;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    position: sticky; /* Fix the button at the bottom */
+    bottom: 0; /* Align it to the bottom */
+}
+
+.logout-button:hover {
+    background-color: #333333;
+}
+
+.content {
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 0 15px 15px 0; /* Rounded only on right side */
+    overflow-y: auto; /* Prevent scrolling */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

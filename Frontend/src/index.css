@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../public/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+#app {
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2 {
+  color: #333;
+  text-align: center;
+}
+
+input {
+  display: block;
+  margin: 10px 0;
+  padding: 12px 15px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box; /* Ensure the input width includes padding and border */
+}
+
+button {
+  padding: 12px 15px;
+  width: 100%;
+  background-color: #000000; /* Updated to match DoctorDashboard */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: #333333; /* Updated to match DoctorDashboard */
+}
+
+.form-container {
+  width: 300px;
+  max-width: 100%;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 15px;
+  box-sizing: border-box; /* Ensure the container width includes padding and border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+}
+
+.welcome-message {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-forms button {
+  margin-top: 10px;
+  padding: 12px 15px;
+  width: 100%;
+  background-color: #ffffff; /* Updated to match DoctorDashboard */
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-forms button:hover {
+  background-color: #333333; /* Updated to match DoctorDashboard */
+}
+
+.welcome-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  max-width: 400px;
+  text-align: center;
+}
+.checkbox-container {
+  display: flex;
+  align-items: flex-start; /* Alinha o topo da checkbox e do texto */
+  margin-top: 1rem; /* Espaço entre o checkbox e os outros campos */
+  gap: 0.5rem; /* Espaço entre a checkbox e o texto */
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin: 0; /* Remove margens padrão da checkbox */
+  transform: translateY(0.1rem); /* Ajusta o alinhamento visual da checkbox */
+}
+
+.checkbox-container label {
+  line-height: 1.5; /* Alinha o texto ao lado da checkbox */
+}
+
+.checkbox-container a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.checkbox-container a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,47 @@
+@startuml
+actor Admin
+participant OperationTypeController as Controller
+participant OperationTypeService as Service
+participant OperationTypeRepository as Repository
+participant OperationType as OperationType
+
+activate Admin
+activate Controller
+
+Admin -> Controller: Request to deactivate operation type (GET: deactivateOperationType)
+Controller -> Service: getOperationTypeById (operationTypeId)
+activate Service
+
+Service -> Repository: getOperationTypeById (operationTypeId)
+activate Repository
+Repository --> Service: return operation type instance
+deactivate Repository
+
+Service --> Controller: return operation type instance
+deactivate Service
+
+Controller --> Admin: show operation type details and ask for deactivation confirmation
+
+Admin -> Controller: confirm deactivation (POST: deactivateOperationType)
+Controller -> Service: deactivateOperationType (operationTypeId)
+activate Service
+
+Service -> Repository: getOperationTypeById (operationTypeId)
+activate Repository
+Repository --> Service: return operation type instance
+
+Service -> OperationType: set instance to inactive
+activate OperationType
+OperationType --> Service: return updated instance
+
+Service -> Repository: save updated operation type
+Repository --> Service: updated operation type saved
+deactivate Repository
+
+Service --> Controller: return success response
+deactivate Service
+
+Controller --> Admin: show success message
+deactivate Controller
+deactivate Admin
+@enduml

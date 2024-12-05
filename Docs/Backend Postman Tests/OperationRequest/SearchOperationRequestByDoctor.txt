@@ -1,0 +1,193 @@
+pm.test("Response status code is 200", function () {
+  pm.response.to.have.status(200);
+});
+
+
+pm.test("Content type is application/json", function () {
+    pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+});
+
+
+pm.test("Response time is within an acceptable range", function () {
+  pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+
+pm.test("OperationRequests array has the correct structure", function () {
+  const responseData = pm.response.json();
+  
+  pm.expect(responseData).to.be.an('object');
+  pm.expect(responseData.operationRequests).to.be.an('array');
+  responseData.operationRequests.forEach(function(request) {
+    pm.expect(request).to.have.property('id').that.is.a('string');
+    pm.expect(request).to.have.property('patientId').that.is.a('string');
+    pm.expect(request).to.have.property('patientName').that.is.a('string');
+    pm.expect(request).to.have.property('doctorId').that.is.a('string');
+    pm.expect(request).to.have.property('doctorName').that.is.a('string');
+    pm.expect(request).to.have.property('operationTypeId').that.is.a('string');
+    pm.expect(request).to.have.property('operationTypeName').that.is.a('string');
+    pm.expect(request).to.have.property('priority').that.is.a('number');
+    pm.expect(request).to.have.property('suggestedDeadline').that.is.a('string');
+    pm.expect(request).to.have.property('requestDate').that.is.a('string');
+  });
+});
+
+
+pm.test("Each operation request object has the required fields", function () {
+    const responseData = pm.response.json();
+    
+    pm.expect(responseData.operationRequests).to.be.an('array').that.is.not.empty;
+
+    responseData.operationRequests.forEach(function(operationRequest) {
+        pm.expect(operationRequest).to.include.all.keys(
+            'id', 'patientId', 'patientName', 'doctorId', 'doctorName', 
+            'operationTypeId', 'operationTypeName', 'priority', 
+            'suggestedDeadline', 'requestDate'
+        );
+    });
+});
+
+pm.test("IDs are unique", function () {
+    const responseData = pm.response.json();
+    const ids = responseData.operationRequests.map(request => request.id);
+    const uniqueIds = [...new Set(ids)];
+    pm.expect(ids.length).to.eql(uniqueIds.length);
+});
+
+pm.test("Dates are in ISO 8601 format", function () {
+    const responseData = pm.response.json();
+    const iso8601Regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(.\d+)?(Z|([+-]\d{2}:\d{2}))?$/;
+    
+    responseData.operationRequests.forEach(request => {
+        pm.expect(request.suggestedDeadline).to.match(iso8601Regex);
+        pm.expect(request.requestDate).to.match(iso8601Regex);
+    });
+});
+
+pm.test("Priority values are within range", function () {
+    const responseData = pm.response.json();
+    responseData.operationRequests.forEach(request => {
+        pm.expect(request.priority).to.be.within(0, 2);
+    });
+});
+
+pm.test("Patient IDs and names match consistently", function () {
+    const responseData = pm.response.json();
+    const patientMap = {};
+
+    responseData.operationRequests.forEach(request => {
+        if (patientMap[request.patientId]) {
+            pm.expect(request.patientName).to.eql(patientMap[request.patientId]);
+        } else {
+            patientMap[request.patientId] = request.patientName;
+        }
+    });
+});
+
+pm.test("OperationRequests is not empty on success", function () {
+    const responseData = pm.response.json();
+    if (responseData.message === "All operation requests successfully retrieved.") {
+        pm.expect(responseData.operationRequests).to.be.an('array').that.is.not.empty;
+    }
+});
+
+pm.test("Suggested deadlines are in the future", function () {
+    const responseData = pm.response.json();
+    responseData.operationRequests.forEach(request => {
+        const deadline = new Date(request.suggestedDeadline);
+        const requestDate = new Date(request.requestDate);
+        pm.expect(deadline.getTime()).to.be.above(requestDate.getTime());
+    });
+});
+
+pm.test("Doctors have assigned patients", function () {
+    const responseData = pm.response.json();
+    responseData.operationRequests.forEach(request => {
+        pm.expect(request.doctorId).to.not.be.empty;
+        pm.expect(request.doctorName).to.not.be.empty;
+    });
+});
+
+pm.test("Response contains operationRequests", function () {
+    const responseData = pm.response.json();
+    pm.expect(responseData).to.have.property("operationRequests").that.is.an("array");
+});
+
+pm.test("Error message is returned on failure", function () {
+    const responseData = pm.response.json();
+    if (pm.response.code !== 200) {
+        pm.expect(responseData).to.have.property("message").that.is.a("string");
+    }
+});
+
+pm.test("No duplicate operationRequests", function () {
+    const responseData = pm.response.json();
+    const ids = responseData.operationRequests.map(request => request.id);
+    pm.expect(new Set(ids).size).to.eql(ids.length);
+});
+
+pm.test("Handles empty operationRequests array", function () {
+    const responseData = pm.response.json();
+    if (responseData.operationRequests.length === 0) {
+        pm.expect(responseData.message).to.eql("No operation requests found.");
+    }
+});
+pm.test("Each operation request has a non-empty ID", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.id).to.be.a('string').and.to.not.be.empty;
+    });
+});
+
+pm.test("Each operation request has a non-empty patient ID", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.patientId).to.be.a('string').and.to.not.be.empty;
+    });
+});
+
+pm.test("Each operation request has a non-empty patient name", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.patientName).to.be.a('string').and.to.not.be.empty;
+    });
+});
+
+pm.test("Each operation request has a non-empty doctor ID", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.doctorId).to.be.a('string').and.to.not.be.empty;
+    });
+});
+
+pm.test("Each operation request has a non-empty doctor name", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.doctorName).to.be.a('string').and.to.not.be.empty;
+    });
+});
+
+pm.test("Each operation request has a non-empty operation type ID", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.operationTypeId).to.be.a('string').and.to.not.be.empty;
+    });
+});
+
+pm.test("Each operation request has a non-empty operation type name", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.operationTypeName).to.be.a('string').and.to.not.be.empty;
+    });
+});
+
+pm.test("Each operation request has a non-negative priority", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.priority).to.be.a('number').and.to.be.at.least(0);
+    });
+});
+
+pm.test("Each operation request has a non-empty suggested deadline", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.suggestedDeadline).to.be.a('string').and.to.not.be.empty;
+    });
+});
+
+pm.test("Each operation request has a non-empty request date", function () {
+    pm.response.json().operationRequests.forEach(function(request) {
+        pm.expect(request.requestDate).to.be.a('string').and.to.not.be.empty;
+    });
+});

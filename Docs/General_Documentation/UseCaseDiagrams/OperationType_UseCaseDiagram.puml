@@ -1,0 +1,36 @@
+@startuml
+title Use Case Diagram - Operation Type
+
+left to right direction
+
+actor Admin #F0E68C
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+
+   usecase "Create an Operation Type" as UC20 #F0E68C 
+   Admin --> UC16
+   
+   usecase "Update an Operation Type" as UC21 #F0E68C 
+   Admin --> UC17
+   
+   usecase "Deactivate an Operation Type" as UC22 #F0E68C 
+   Admin --> UC18
+   
+   usecase "List/Search Operation Types" as UC23 #F0E68C 
+   Admin --> UC19
+
+}
+
+@enduml

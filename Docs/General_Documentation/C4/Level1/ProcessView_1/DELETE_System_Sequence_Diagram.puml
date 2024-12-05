@@ -1,0 +1,17 @@
+﻿@startuml
+title System Sequence Diagram - Generic DELETE 
+
+actor "User" as user #AFEEEE 
+participant "System" as system #F0E68C 
+
+user -> system: Asks to delete entity
+activate system
+
+system -> system: Retrieve entity by Attribute
+system -> system: Delete entity
+system -> system: Insert log entry for deletion
+
+system --> user: Deletion Confirmation
+deactivate system
+
+@enduml

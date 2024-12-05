@@ -1,0 +1,48 @@
+@startuml Level 3 Sequence Diagram for US 5.1.20
+actor Admin
+participant OperationTypeController as Controller
+participant OperationTypeService as Service
+participant OperationTypeRepository as Repository
+participant OperationType as OperationType
+participant OperationTypeCreatedEvent as Event
+participant OperationTypeCreatedEventHandler as EventHandler
+participant Logger as Logger
+
+activate Admin
+activate Controller
+
+Admin -> Controller: ask to add new operation type (GET: addOperationType)
+Controller --> Admin: sends form to add new operation type
+
+Admin -> Controller: submit form with new operation type details (POST: registOperationType)
+Controller -> Service: registOperationType (name, required staff, duration)
+activate Service
+
+Service -> OperationType: create new OperationType instance
+activate OperationType
+OperationType --> Service: return OperationType instance
+
+Service -> Repository: check if operation type already exists
+activate Repository
+Repository --> Service: operation type does not exist
+
+Service -> Repository: save OperationType
+Repository --> Service: operation type saved
+deactivate Repository
+
+Service -> Event: create OperationTypeCreatedEvent
+activate Event
+Event --> Service: event created
+deactivate Event
+
+Service -> EventHandler: handle OperationTypeCreatedEvent
+activate EventHandler
+EventHandler -> Logger: log information about the event
+deactivate EventHandler
+
+Service --> Controller: return success response
+deactivate Service
+
+Controller --> Admin: shows success message
+deactivate Controller
+@enduml

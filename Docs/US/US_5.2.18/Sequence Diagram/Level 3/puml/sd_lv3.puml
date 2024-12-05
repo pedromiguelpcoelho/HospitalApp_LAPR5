@@ -1,0 +1,55 @@
+@startuml Level 3 Sequence Diagram for Adding Operation Type (Frontend)
+actor Admin
+participant LoginPage as LoginPage
+participant AddOperationTypePage as AddOperationTypePage
+participant OperationTypeForm as OperationTypeForm
+participant BackendAPI as Backend
+participant useState as useState
+participant useEffect as useEffect
+participant handleLogin as handleLogin
+participant handleSubmit as handleSubmit
+
+activate Admin
+Admin -> LoginPage: Enter email and password
+activate LoginPage
+LoginPage -> handleLogin: Call handleLogin function
+activate handleLogin
+handleLogin -> BackendAPI: POST /api/auth/login-username
+activate BackendAPI
+BackendAPI --> handleLogin: Return token, role, and name
+deactivate BackendAPI
+
+handleLogin -> useState: Update state with token, role, and name
+handleLogin -> localStorage: Store token, role, and name
+handleLogin -> Admin: Redirect to AddOperationTypePage
+deactivate handleLogin
+deactivate LoginPage
+
+Admin -> AddOperationTypePage: Navigate to AddOperationTypePage
+activate AddOperationTypePage
+AddOperationTypePage -> useEffect: Call useEffect to fetch staff members
+activate useEffect
+useEffect -> BackendAPI: GET /api/staff/all
+activate BackendAPI
+BackendAPI --> useEffect: Return list of staff members
+deactivate BackendAPI
+useEffect -> useState: Update state with staff members
+deactivate useEffect
+
+Admin -> OperationTypeForm: Fill form with operation type details
+activate OperationTypeForm
+OperationTypeForm -> handleSubmit: Call handleSubmit function
+activate handleSubmit
+handleSubmit -> AddOperationTypePage: Submit form data
+handleSubmit -> BackendAPI: POST /api/operationTypes
+activate BackendAPI
+BackendAPI --> handleSubmit: Return success message
+deactivate BackendAPI
+handleSubmit -> useState: Update state with success message
+deactivate handleSubmit
+deactivate OperationTypeForm
+
+AddOperationTypePage -> Admin: Display success message
+deactivate AddOperationTypePage
+deactivate Admin
+@enduml

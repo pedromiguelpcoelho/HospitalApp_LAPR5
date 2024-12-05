@@ -1,0 +1,28 @@
+As an Admin, I want to edit existing operation types, so that I can update or correct 
+information about the procedure. 
+Acceptance Criteria: 
+- Admins can search for and select an existing operation type to edit. 
+- Editable fields include  operation name, required staff by specialization, and estimated 
+duration. 
+- Changes are reflected in the system immediately for future operation requests. 
+- Historical data is maintained, but new operation requests will use the updated operation type 
+information.
+
+
+@startuml Level 1 Sequence Diagram for US 5.1.21
+actor Admin
+participant Backend
+
+activate Admin
+activate Backend
+Admin -> Backend: ask to edit existing operation type
+Backend --> Admin: shows existing operation types and asks for selectionw
+
+Admin -> Backend: select operation type to edit
+
+Backend --> Admin: asks for new operation details
+Admin -> Backend: provides new operation details
+
+Backend --> Admin: shows sucess message
+
+@enduml

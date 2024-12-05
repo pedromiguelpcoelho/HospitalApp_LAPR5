@@ -1,0 +1,60 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../public/login_background.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.welcome-message {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-info, .auth-forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px 15px;
+  width: 100%;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: #333333;
+}

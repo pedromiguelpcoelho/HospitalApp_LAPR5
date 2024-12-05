@@ -1,0 +1,41 @@
+﻿@startuml
+title Use Case Diagram - Integration
+
+left to right direction
+
+actor Admin #F0E68C
+actor User #F0E68C
+
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+   
+    usecase "Have an integrated UI for all modules" as UC24 #F0E68C
+    User --> UC24
+
+    usecase "Application menu to adjust according to my role" as UC25 #F0E68C
+    User --> UC25
+
+    usecase "Synchronization 3D model with Planing module" as UC26 #F0E68C
+    Admin --> UC26
+
+    usecase "Synchronization Planing Module with the Backoffice Module " as UC27 #F0E68C
+    Admin --> UC27
+
+    usecase "Synchronization e information about staff’s availability and operation schedule with the Planing Module" as UC28 #F0E68C
+    Admin --> UC28
+
+}
+
+@enduml

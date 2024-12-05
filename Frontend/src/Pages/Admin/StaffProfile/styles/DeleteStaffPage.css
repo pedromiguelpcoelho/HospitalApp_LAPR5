@@ -1,0 +1,85 @@
+/* Container principal do formulário de exclusão */
+.delete-staff-form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f4f6f8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Título da página */
+.delete-staff-form-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Labels do formulário */
+.delete-staff-form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Campo de seleção do staff */
+.delete-staff-form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+}
+
+.delete-staff-form-select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Botão de exclusão */
+.delete-staff-form-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #d9534f;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-staff-form-button:hover {
+    background-color: #c9302c;
+}
+
+/* Mensagem de erro */
+.delete-staff-form-error {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Detalhes do staff selecionado */
+.delete-staff-form-details {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #eef1f3;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.delete-staff-form-details p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #333;
+}
+

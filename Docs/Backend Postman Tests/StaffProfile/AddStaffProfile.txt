@@ -1,0 +1,55 @@
+pm.test("Response status code is 201", function () {
+    pm.response.to.have.status(201);
+});
+
+pm.test("Response has the required fields", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData).to.be.an('object');
+    pm.expect(responseData).to.have.property('firstName');
+    pm.expect(responseData).to.have.property('lastName');
+    pm.expect(responseData).to.have.property('email');
+    pm.expect(responseData).to.have.property('phoneNumber');
+    pm.expect(responseData).to.have.property('role');
+    pm.expect(responseData).to.have.property('specialization');
+    pm.expect(responseData).to.have.property('isActive');
+});
+
+pm.test("Email is in a valid format", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData.email).to.be.a('string');
+    pm.expect(responseData.email).to.match(/\S+@\S+\.\S+/);
+});
+
+pm.test("Phone number is a valid string", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData.phoneNumber).to.be.a('string').and.to.match(/^\d{9}$/, "Phone number should be a valid 9-digit number");
+});
+
+pm.test("Role is a valid string", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData.role).to.be.a('string').and.to.have.lengthOf.at.least(1, "Role should not be empty");
+});
+
+pm.test("Specialization is a valid string", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData.specialization).to.be.a('string').and.to.have.lengthOf.at.least(1, "Specialization should not be empty");
+});
+
+pm.test("IsActive is a boolean", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData.isActive).to.be.a('boolean');
+});
+
+pm.test("Response must have the required header 'Content-Type'", function () {
+    pm.expect(pm.response.headers.get("Content-Type")).to.exist;
+});
+
+pm.test("Content-Type header is set to application/json", function () {
+    pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+});

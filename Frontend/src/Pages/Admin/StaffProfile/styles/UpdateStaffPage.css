@@ -1,0 +1,161 @@
+.list-staff-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.list-staff-container h1 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-bar select,
+.search-bar input[type="text"],
+.search-bar input[type="date"],
+.search-bar input[type="checkbox"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 300px;
+    transition: border-color 0.3s ease;
+    margin: 5px 0;
+}
+
+.search-bar select:focus,
+.search-bar input[type="text"]:focus,
+.search-bar input[type="date"]:focus {
+    border-color: #000000;
+    outline: none;
+}
+
+.staff-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.staff-card {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.staff-card:hover {
+    transform: translateY(-5px);
+}
+
+.staff-card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333333;
+}
+
+.selected-details {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.selected-details h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.selected-details p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333333;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #000000;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.cancel-button {
+    background-color: #f44336;
+    margin-top: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #d32f2f;
+}
+
+.update-form-container {
+    margin-top: 20px;
+}
+
+.update-form-container input,
+.update-form-container select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.update-form-container input:focus,
+.update-form-container select:focus {
+    border-color: #000000;
+    outline: none;
+}
+
+.staff-list, .selected-details {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}

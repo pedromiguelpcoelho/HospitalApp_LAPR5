@@ -1,0 +1,84 @@
+@startuml
+title "Domain Model - View 2"
+hide empty members
+
+class User #FAA57A{
+  +Username: String
+  +Role: String
+  +Email: String
+  +Password:String
+}
+
+class Patient #98FB98 {
+  +First Name: String
+  +Last Name: String
+  +Date of Birth: Date
+  +Medical Record Number: String
+  +PhoneNumber: String
+  +Email: String
+  +Emergency Contact: String
+  +Appointment History: List
+}
+
+class Specialization #B0C4DE {
+
+}
+
+class Staff #87CEFA {
+  +First Name: String
+  +Last Name: String
+  +License Number: String
+  +Role: String
+  +PhoneNumber: String
+  +Email: String
+  +Availability Slots: List
+}
+
+class OperationRequest #DDA0DD{
+  +ID: String
+  +Patient ID: String
+  +Doctor ID: String
+  +Operation Type ID: String
+  +Deadline: Date
+  +Priority: String
+}
+
+class OperationType #AFEEEE {
+  +ID: String
+  +Name: String
+  +Required Staff by Specialization: List
+  'nao tenho a certeza do atributo acima, ver melhor
+  +Estimated Duration: Duration
+}
+
+class Appointment #F0E68C {
+  +ID: String
+  +Request ID: String
+  +Room ID: String
+  +Date and Time: DateTime
+  +Status: String
+}
+
+class SurgeryRoom #D8BFD8{
+  +Room Number: String
+  +Type: String
+  +Capacity: Integer
+  +Assigned Equipment: List
+  +Current Status: String
+}
+
+User "1" --> "1" Patient : can be a 
+User "1" --> "1" Staff: can be a 
+
+Staff "1" --> "1...*" OperationRequest: makes an (doctor)
+Staff "1" ---> "1...*"Specialization: has a
+Patient "1" ---> "1...*" OperationRequest: has an
+
+OperationType "1" <-up- "1...*" OperationRequest: for a
+OperationType "0...*" --> "1..*" Specialization : requests a
+OperationRequest "1" --> "1" Appointment: sets an
+Appointment "1...*" --> "1" SurgeryRoom: has a 
+
+Appointment "0...*" --> "1...*" Staff : requests
+
+@enduml

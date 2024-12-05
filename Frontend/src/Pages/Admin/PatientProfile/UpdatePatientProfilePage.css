@@ -1,0 +1,26 @@
+﻿form input:focus {
+    border-color: #333333;
+    outline: none;
+}
+
+form button {
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #000;  
+}
+
+select {
+    padding: 10px;
+    border-radius: 7px;
+    width: 100%;
+    margin-bottom: 10px; 
+}

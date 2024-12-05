@@ -1,0 +1,43 @@
+@startuml Level 3 Sequence Diagram for US 5.1.3
+actor Patient
+participant AuthController as Controller
+participant CognitoAuthService as AuthService
+participant IPatientProfileRepository as Repository
+participant IAmazonCognitoIdentityProvider as IAM
+
+activate Patient
+Patient -> Controller: initiateRegistration(signUpModel)
+activate Controller
+
+Controller -> AuthService: SignUpAsync(signUpModel)
+activate AuthService
+
+AuthService -> Repository: ExistsAsync(signUpModel.Email)
+activate Repository
+Repository --> AuthService: patientExists
+deactivate Repository
+
+AuthService -> IAM: SignUpAsync(signUpModel)
+activate IAM
+IAM --> AuthService: sendVerificationEmail
+deactivate IAM
+
+AuthService --> Controller: registrationSuccessful
+deactivate AuthService
+
+Controller --> Patient: notifyVerificationEmailSent
+deactivate Controller
+
+Patient -> IAM: confirmEmail(confirmSignUpModel)
+activate IAM
+IAM --> AuthService: emailConfirmed
+deactivate IAM
+
+AuthService -> Controller: emailConfirmed
+activate Controller
+
+Controller --> Patient: registrationSuccessful
+deactivate Controller
+deactivate Patient
+
+@enduml

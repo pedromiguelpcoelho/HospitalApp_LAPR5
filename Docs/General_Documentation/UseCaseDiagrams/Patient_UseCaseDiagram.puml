@@ -1,0 +1,49 @@
+@startuml
+title Use Case Diagram - Patient
+
+left to right direction
+
+actor Patient #F0E68C
+actor Admin #F0E68C
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+
+   usecase "Register" as UC3 #F0E68C
+   Patient --> UC3
+      
+   usecase "Update User Profile" as UC4 #F0E68C
+   Patient --> UC4
+      
+   usecase "Delete Account and Associated Data " as UC5 #F0E68C
+   Patient --> UC5
+   
+   usecase "Login" as UC7 #F0E68C
+   Patient --> UC7
+      
+   usecase "Create a new Patient Profile" as UC8 #F0E68C
+   Admin --> UC8
+      
+   usecase "Update a Patient Profile" as UC9 #F0E68C
+   Admin --> UC9
+   
+   usecase "Delete a Patient Profile" as UC10 #F0E68C
+   Admin --> UC10
+      
+   usecase "List/search Patient Profiles" as UC11 #F0E68C
+   Admin ---> UC11
+
+}
+
+@enduml

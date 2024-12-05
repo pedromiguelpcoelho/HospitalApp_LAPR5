@@ -1,0 +1,49 @@
+.terms-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    background-image: url('/public/background.jpg'); /* Defina o caminho para a sua imagem de fundo */
+    background-size: cover; /* Isso garante que a imagem de fundo ocupe toda a tela */
+    background-position: center; /* Centraliza a imagem de fundo */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Alinha o título e o iframe verticalmente */
+    padding: 20px;
+    color: white; /* Cor do texto do título (ajuste conforme necessário) */
+}
+
+.terms-title {
+    margin-bottom: 20px;
+    color:#ffffff; /* Cor do título em preto */
+}
+
+.terms-iframe {
+    width: 80%; /* Ajusta para usar 80% da largura disponível */
+    height: 80%; /* Ajusta a altura para 80% da altura disponível */
+    border: none; /* Remove a borda do iframe */
+}
+
+.close-button {
+    margin-top: 20px;
+    padding: 5px 15px; /* Ajuste o padding para tornar o botão menor */
+    font-size: 12px; /* Ajuste o tamanho da fonte para tornar o botão menor */
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80%; /* A largura do botão será 80% da largura do iframe */
+    max-width: 300px; /* Limita a largura máxima do botão */
+    display: block; /* Faz o botão ocupar uma linha inteira */
+    margin-left: auto; /* Alinha o botão à esquerda */
+    margin-right: auto; /* Centraliza o botão */
+}
+
+.close-button:hover {
+    background-color: #0056b3;
+}

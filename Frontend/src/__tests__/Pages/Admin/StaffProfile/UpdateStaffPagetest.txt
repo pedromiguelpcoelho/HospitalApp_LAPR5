@@ -1,0 +1,157 @@
+/*import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import UpdateStaffPage from '../../../../Pages/Admin/StaffProfile/UpdateStaffPage';
+import fetchApi from '../../../../Services/fetchApi';
+
+jest.mock('../../../../Services/fetchApi');
+
+describe('UpdateStaffPage', () => {
+    const mockProfiles = [
+        {
+            id: 1,
+            name: 'John Doe',
+            firstName: 'John',
+            lastName: 'Doe',
+            specialization: 'Orthopaedist',
+            email: 'john.doe@example.com',
+            phoneNumber: '1234567890',
+            licenseNumber: 'A12345',
+            role: 'Doctor',
+            isActive: true,
+        },
+        {
+            id: 2,
+            name: 'Jane Smith',
+            firstName: 'Jane',
+            lastName: 'Smith',
+            specialization: 'Orthopaedist',
+            email: 'jane.smith@example.com',
+            phoneNumber: '0987654321',
+            licenseNumber: 'B67890',
+            role: 'Doctor',
+            isActive: false,
+        },
+    ];
+
+    beforeEach(() => {
+        fetchApi.mockResolvedValue(mockProfiles);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    /*test('renders staff list and displays profiles', async () => {
+        render(<UpdateStaffPage />);
+
+        // Verifica estado de carregamento
+        expect(screen.getByText(/loading.../i)).toBeInTheDocument();
+
+        // Aguarda que os perfis sejam carregados
+        await waitFor(() => {
+            expect(fetchApi).toHaveBeenCalledWith('/staff/search', { method: 'GET' });
+        });
+
+        // Verifica se os perfis são exibidos corretamente
+        mockProfiles.forEach(profile => {
+            expect(screen.getByText(profile.name)).toBeInTheDocument();
+        });
+    });*/
+
+    /*test('selects a profile and displays its details', async () => {
+        render(<UpdateStaffPage />);
+
+        // Aguarda carregamento dos perfis
+        await waitFor(() => {
+            expect(fetchApi).toHaveBeenCalled();
+        });
+
+        // Clica no cartão de um perfil
+        fireEvent.click(screen.getByText('John Doe'));
+
+        // Verifica se os detalhes do perfil selecionado são exibidos
+        await waitFor(() => {
+            expect(screen.getByText(/staff details/i)).toBeInTheDocument();
+            expect(screen.getByText(/john.doe@example.com/i)).toBeInTheDocument();
+            expect(screen.getByText(/cardiology/i)).toBeInTheDocument();
+        });
+    });*/
+
+    /*test('enters edit mode and updates profile', async () => {
+        render(<UpdateStaffPage />);
+
+        // Aguarda carregamento dos perfis
+        await waitFor(() => {
+            expect(fetchApi).toHaveBeenCalled();
+        });
+
+        // Clica no cartão de um perfil
+        fireEvent.click(screen.getByText('John Doe'));
+
+        // Clica no botão "Update Profile"
+        fireEvent.click(screen.getByText(/update profile/i));
+
+        // Verifica se o formulário de atualização é exibido
+        expect(screen.getByPlaceholderText(/first name/i)).toHaveValue('John');
+        expect(screen.getByPlaceholderText(/last name/i)).toHaveValue('Doe');
+
+        // Altera o valor do campo "First Name"
+        fireEvent.change(screen.getByPlaceholderText(/first name/i), {
+            target: { value: 'Johnny' },
+        });
+
+        // Verifica se o valor do campo foi atualizado
+        expect(screen.getByPlaceholderText(/first name/i)).toHaveValue('Johnny');
+
+        // Simula clique no botão de atualização
+        fireEvent.click(screen.getByText(/update/i));
+
+        // Aguarda chamada à API de atualização
+        await waitFor(() => {
+            expect(fetchApi).toHaveBeenCalledWith(`/staff/1`, expect.objectContaining({
+                method: 'PUT',
+                body: JSON.stringify(expect.objectContaining({ firstName: 'Johnny' })),
+            }));
+        });
+
+        // Verifica se a mensagem de sucesso é exibida
+        expect(window.alert).toHaveBeenCalledWith('Staff profile updated successfully!');
+    });
+
+    test('handles API errors gracefully', async () => {
+        fetchApi.mockRejectedValueOnce(new Error('Failed to fetch'));
+
+        render(<UpdateStaffPage />);
+
+        // Aguarda carregamento dos perfis e simula erro
+        await waitFor(() => {
+            expect(fetchApi).toHaveBeenCalledWith('/staff/search', { method: 'GET' });
+        });
+
+        // Verifica se a mensagem de erro é exibida
+        expect(screen.getByText(/failed to fetch/i)).toBeInTheDocument();
+    });
+
+    test('cancels editing and resets form', async () => {
+        render(<UpdateStaffPage />);
+
+        // Aguarda carregamento dos perfis
+        await waitFor(() => {
+            expect(fetchApi).toHaveBeenCalled();
+        });
+
+        // Clica no cartão de um perfil
+        fireEvent.click(screen.getByText('John Doe'));
+
+        // Clica no botão "Update Profile"
+        fireEvent.click(screen.getByText(/update profile/i));
+
+        // Clica no botão "Cancel"
+        fireEvent.click(screen.getByText(/cancel/i));
+
+        // Verifica se o formulário foi resetado e a edição foi cancelada
+        expect(screen.queryByPlaceholderText(/first name/i)).not.toBeInTheDocument();
+        expect(screen.getByText('Staff List')).toBeInTheDocument();
+    });
+});*/

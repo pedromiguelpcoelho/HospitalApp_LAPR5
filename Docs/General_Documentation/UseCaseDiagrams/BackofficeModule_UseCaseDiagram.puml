@@ -1,0 +1,103 @@
+﻿@startuml
+title Use Case Diagram - Backoffice Module
+
+left to right direction
+
+actor Admin #F0E68C
+actor User #F0E68C
+actor Patient #F0E68C
+actor Doctor #F0E68C
+
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+    'SPRINT A
+    
+    usecase "Register a new User" as UC1.1 #F0E68C
+    Admin --> UC1.1
+   
+    usecase "Send a setup link via email to activate an account" as UC1.2 #F0E68C
+    Admin --> UC1.2
+   
+    usecase "Reset Password" as UC2 #F0E68C
+    User --> UC2
+   
+  usecase "Create a user profile"  as UC3.1 #F0E68C
+   Patient --> UC3.1
+   
+   usecase "Book appointments online" as UC3.2 #F0E68C
+   Patient --> UC3.2 
+     
+    usecase "Update user Profile" as UC4 #F0E68C
+    Patient --> UC4
+   
+    usecase "Delete Account and Associated Data " as UC5 #F0E68C
+    Patient --> UC5
+   
+    usecase "Acess Features" as UC6 #F0E68C
+   
+    usecase "Login" as UC7 #F0E68C
+    Patient --> UC7
+   
+    usecase "Create a new patient profile" as UC8 #F0E68C
+    Admin --> UC8
+   
+    usecase "Update a Patient Profile" as UC9 #F0E68C
+    Admin --> UC9
+   
+    usecase "Delete a patient profile " as UC10 #F0E68C
+    Admin --> UC10
+   
+    usecase "List/search patient profiles" as UC11 #F0E68C
+    Admin ---> UC11
+   
+    usecase "Create a new staff profile" as UC12 #F0E68C
+    Admin --> UC12
+
+    usecase "Edit a staff´s profile" as UC13 #F0E68C
+    Admin --> UC13
+
+    usecase "Deactivate a staff profile" as UC14 #F0E68C
+    Admin --> UC14
+
+    usecase "List/search staff profiles" as UC15 #F0E68C
+    Admin --> UC15
+
+    usecase "Create an Operation Requisition" as UC16 #F0E68C
+    Doctor --> UC16
+   
+    usecase "Update an Operation Requisition" as UC17 #F0E68C
+    Doctor --> UC17
+   
+    usecase "Remove an Operation Requisition" as UC18 #F0E68C
+    Doctor --> UC18
+   
+    usecase "List/Search Operation Requisitions" as UC19 #F0E68C
+    Doctor --> UC19
+   
+    usecase "Create an Operation Type" as UC20 #F0E68C
+    Admin --> UC20
+   
+    usecase "Update an Operation Type" as UC21 #F0E68C
+    Admin --> UC21
+   
+    usecase "Deactivate an Operation Type" as UC22 #F0E68C
+    Admin --> UC22
+   
+    usecase "List/Search Operation Types" as UC23 #F0E68C  
+    Admin --> UC23   
+
+}
+
+@enduml

@@ -1,0 +1,32 @@
+﻿@startuml
+title Use Case Diagram - GDPR Module
+
+left to right direction
+
+actor Entity #F0E68C
+actor System #F0E68C
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+
+    usecase "Know how the project may affect patients' personal data and if the processing is done according to the law." as UC44 #F0E68C
+    Entity --> UC44
+
+    usecase "Notify both users and the responsible authority in case of a data breach, so that I comply with GDPR’s breach notification requirements." as UC45 #F0E68C
+    System --> UC45
+
+
+}
+
+@enduml

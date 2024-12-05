@@ -1,0 +1,58 @@
+.update-request-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.update-request-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.update-request-form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.update-request-form-select,
+.update-request-form input[type="datetime-local"],
+.update-request-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.update-request-form-select:focus,
+.update-request-form input[type="datetime-local"]:focus,
+.update-request-form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.update-request-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.update-request-form button:hover {
+    background-color: #333;
+}
+
+.update-request-form p {
+    text-align: center;
+    color: red;
+}

@@ -1,0 +1,29 @@
+//US 5.1.3 - As a Patient, I want to register for the healthcare application, 
+//so that I can create a user profile and book appointments online
+
+@startuml Level 1 Sequence Diagram for US 5.1.3
+actor Patient
+participant Backend
+participant "External IAM" as IAM
+
+activate Patient
+Patient -> Backend: initiate registration
+activate Backend
+
+Backend -> IAM: register patient
+activate IAM
+IAM --> Backend: send verification email
+deactivate IAM
+
+Backend --> Patient: notify verification email sent
+
+Patient -> IAM: confirm email
+activate IAM
+IAM --> Backend: email confirmed
+deactivate IAM
+
+Backend --> Patient: registration successful
+deactivate Backend
+deactivate Patient
+
+@enduml

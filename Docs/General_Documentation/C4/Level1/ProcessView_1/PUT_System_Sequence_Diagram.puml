@@ -1,0 +1,18 @@
+﻿@startuml
+title System Sequence Diagram -  Generic GET 
+
+actor "User" as user #AFEEEE 
+participant "System" as system #F0E68C 
+
+user -> system: Asks to update entity
+activate system
+
+system -> system: Retrieve entity by Attribute
+system -> system: Update entity with DTO
+system -> system: Save updated entity
+system -> system: Insert log entry for update
+
+system --> user: Update Confirmation
+deactivate system
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml SequenceDiagramLevel1
+actor Admin
+participant Backend
+
+activate Admin
+activate Backend
+
+Admin -> Backend: Request to edit operation type
+Backend --> Admin: Shows list of operation types
+
+Admin -> Backend: Select operation type to deactivate
+Backend --> Admin: Asks for confirmation
+
+Admin -> Backend: Confirms deactivation
+Backend --> Admin: Shows success message
+
+@enduml

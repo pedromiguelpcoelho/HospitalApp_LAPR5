@@ -1,0 +1,22 @@
+@startuml
+actor Admin
+participant Frontend
+participant Backend
+
+activate Admin
+Admin -> Frontend: Request to add new operation type
+activate Frontend
+Frontend --> Admin: Display form to add new operation type
+
+Admin -> Frontend: Fill form with operation type details
+Frontend -> Backend: Send operation type details (POST /api/operationTypes)
+activate Backend
+
+Backend -> Backend: Process request and add new operation type
+Backend --> Frontend: Return success message
+deactivate Backend
+
+Frontend --> Admin: Display success message
+deactivate Frontend
+
+@enduml

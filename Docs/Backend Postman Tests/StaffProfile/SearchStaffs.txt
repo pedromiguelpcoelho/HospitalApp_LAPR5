@@ -1,0 +1,131 @@
+pm.test("Response status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Content-Type is application/json", function () {
+    pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+});
+
+pm.test("Response has the required fields", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData).to.be.an('array');
+    responseData.forEach(function(staff) {
+        pm.expect(staff).to.have.property('firstName');
+        pm.expect(staff).to.have.property('lastName');
+        pm.expect(staff).to.have.property('role');
+        pm.expect(staff).to.have.property('specialization');
+        pm.expect(staff).to.have.property('email');
+        pm.expect(staff).to.have.property('phoneNumber');
+    });
+});
+
+pm.test("Id property must be a non-empty string", function () {
+    const responseData = pm.response.json();
+
+    responseData.forEach(function(staff){
+        pm.expect(staff.id).to.be.a('string').and.to.have.lengthOf.at.least(1, "Id should not be empty");
+    });
+});
+
+pm.test("Phone number is a valid number that starts with 9", function () {
+    const responseData = pm.response.json();
+    
+    pm.expect(responseData).to.be.an('array');
+    
+    responseData.forEach(function(staff){
+        pm.expect(staff.phoneNumber).to.be.a('string').and.to.satisfy((phone) => {
+            return phone.startsWith('9');
+        }, "Phone number should start with 9");
+    });
+});
+
+pm.test("Role field is present and valid", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(staff) {
+        pm.expect(staff).to.have.property('role');
+        pm.expect(staff.role).to.be.a('string').and.to.have.lengthOf.at.least(1, "Role should not be empty");
+    });
+});
+
+pm.test("Email should be a valid string", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(staff) {
+        pm.expect(staff.email).to.be.a('string').and.to.include('@').and.to.include('.');
+    });
+});
+
+pm.test("Absence of empty values in staff fields", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(staff){
+        pm.expect(staff.id).to.not.equal('');
+        pm.expect(staff.firstName).to.not.equal('');
+        pm.expect(staff.lastName).to.not.equal('');
+        pm.expect(staff.role).to.not.equal('');
+        pm.expect(staff.specialization).to.not.equal('');
+        pm.expect(staff.email).to.not.equal('');
+        pm.expect(staff.phoneNumber).to.not.equal('');
+    });
+});
+
+// Test to check if the first name in the response body is a string
+pm.test("First name in the response body is a string", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(staff){
+        pm.expect(staff.firstName).to.be.a('string');
+    });
+});
+
+// Test to check if the last name in the response body is a string
+pm.test("Last name in the response body is a string", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(staff){
+        pm.expect(staff.lastName).to.be.a('string');
+    });
+});
+
+// Test to check if the role in the response body is a string
+pm.test("Role in the response body is a string", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(staff){
+        pm.expect(staff.role).to.be.a('string');
+    });
+});
+
+// Test to check if the specialization in the response body is a string
+pm.test("Specialization in the response body is a string", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(staff){
+        pm.expect(staff.specialization).to.be.a('string');
+    });
+});
+
+// Test to check if the email is in a valid format
+pm.test("Email in the response body is in a valid format", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(staff){
+        pm.expect(staff.email).to.be.a('string').and.to.match(/\S+@\S+\.\S+/);
+    });
+});
+
+// Test for absence of specific empty values
+pm.test("Absence of empty fields in the response body", function () {
+    const responseData = pm.response.json();
+    
+    responseData.forEach(function(staff){
+        pm.expect(staff.firstName).to.not.equal('');
+        pm.expect(staff.lastName).to.not.equal('');
+        pm.expect(staff.role).to.not.equal('');
+        pm.expect(staff.specialization).to.not.equal('');
+        pm.expect(staff.email).to.not.equal('');
+        pm.expect(staff.phoneNumber).to.not.equal('');
+    });
+});

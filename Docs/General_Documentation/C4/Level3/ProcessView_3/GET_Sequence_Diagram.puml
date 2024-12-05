@@ -1,0 +1,49 @@
+﻿@startuml
+title  Sequence Diagram - Generic GET 
+
+actor "User" as user #AFEEEE
+participant "UI" as ui <<interface>> #F0E68C
+participant "Controller" as controller <<application>> #F0E68C
+participant "Service" as service <<domain>> #F0E68C
+participant "Repository" as repo <<repository>> #F0E68C
+participant "Entity" as entity <<entity>> #F0E68C
+participant "DTO" as dto <<dto>> #F0E68C
+database "Database" as db #F0E68C
+
+user -> ui: Ask for entity by attribute 
+activate ui #E8E8E8
+
+ui -> controller: GET /api/resource/{attribute}
+activate controller #E8E8E8
+
+controller -> service: GetResourceByAttribute(attribute)
+activate service #E8E8E8
+
+service -> repo: FindByAttribute(attribute)
+activate repo #E8E8E8
+
+repo -> db: Query entity by Attribute
+activate db #E8E8E8
+
+db --> repo: Entity
+deactivate db
+
+repo --> service: Entity
+deactivate repo
+
+service -> dto: Convert entity to DTO
+activate dto #E8E8E8
+
+dto --> service: ResourceDTO
+deactivate dto 
+
+service --> controller: ResourceDTO
+deactivate service
+
+controller --> ui: 200 OK (ResourceDTO)
+deactivate controller
+
+ui --> user: Entity Data
+deactivate ui
+
+@enduml

@@ -1,0 +1,66 @@
+﻿@startuml
+title  Sequence Diagram - Generic DELETE 
+
+actor "User" as user #AFEEEE 
+participant "UI" as ui <<interface>>#F0E68C 
+participant "Controller" as controller <<application>> #F0E68C 
+participant "Service" as service <<domain>> #F0E68C 
+participant "Repository" as repo <<repository>> #F0E68C 
+participant "Entity" as entity <<entity>> #F0E68C 
+database "Database" as db #F0E68C 
+
+user -> ui : Asks to delete entity
+activate ui #E8E8E8
+
+ui -> controller: DELETE /api/resource/{id}
+activate controller #E8E8E8
+
+controller -> service: DeleteResource(id)
+activate service #E8E8E8
+
+service -> repo: FindById(id)
+activate repo #E8E8E8
+
+repo -> db: Query entity by ID
+activate db #E8E8E8
+
+db --> repo: Entity
+deactivate db 
+
+repo --> service: Entity
+deactivate repo
+
+service -> repo: Remove entity
+activate repo #E8E8E8
+
+repo -> db: Delete entity
+activate db #E8E8E8
+
+db --> repo: Entity deleted
+deactivate db
+
+repo --> service: Entity
+deactivate repo
+
+service -> repo: Log deletion event
+activate repo #E8E8E8
+
+repo -> db: Insert log entry
+activate db #E8E8E8
+
+db --> repo: Log entry inserted
+deactivate db
+
+repo --> service: Log entry confirmed
+deactivate repo
+
+service --> controller: Deletion Confirmation
+deactivate service
+
+controller --> ui: 200 OK (Deletion Confirmation)
+deactivate controller
+
+ui --> user: Deletion Confirmation
+deactivate ui
+
+@enduml

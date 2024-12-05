@@ -1,0 +1,17 @@
+﻿@startuml
+title System Sequence Diagram - Generic POST 
+
+actor "User" as user #AFEEEE 
+participant "System" as system #F0E68C 
+
+user -> system: Asks to create entity
+activate system
+
+system -> system: Create entity from DTO
+system -> system: Save entity
+system -> system: Insert log entry for creation
+
+system --> user: Creation Confirmation
+deactivate system
+
+@enduml

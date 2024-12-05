@@ -1,0 +1,36 @@
+﻿@startuml
+title Use Case Diagram - 3D Visualization Module
+
+left to right direction
+
+actor HealthCareStaff #F0E68C
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam title {
+    FontSize 30
+}
+
+rectangle BackofficeModule #87CEFA {
+
+    usecase "See a 3D representation of the hospital/clinic floor" as UC40 #F0E68C
+    HealthCareStaff --> UC40
+
+    usecase "See appropriate textures (that is, suitable for use in representing a hospital or clinic) mapped onto the floor, walls, and so on." as UC41 #F0E68C
+    HealthCareStaff --> UC41
+
+    usecase "See the hospital/clinic floor illuminated with ambient and directional light." as UC42 #F0E68C
+    HealthCareStaff --> UC42
+
+    usecase "I want to control the camera with the mouse" as UC43 #F0E68C
+    HealthCareStaff --> UC43
+
+}
+
+@enduml

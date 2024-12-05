@@ -1,0 +1,160 @@
+@startuml
+title "Domain Model - View 3"
+hide circle
+hide empty members
+
+skinparam packageStyle rect
+skinparam classBackgroundColor #dddddd
+
+
+skinparam class {
+    ArrowColor Black
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+}
+
+skinparam relationship {
+    ArrowColor Black
+    ArrowFontColor Black
+    ArrowFontSize 14
+}
+
+package "USER AGGREGATE" #FAA57A {
+    class User <<Entity>> <<Root>>
+    class Role <<Enum>>
+    class UserName <<Value Object>>
+    class Email <<Value Object>>
+    class Password <<Value Object>>
+
+    User "1..*" --> "1" Role
+    User "1" --> "1" UserName
+    User "1" --> "1" Email
+    User "1" --> "1" Password
+}
+
+package "PATIENT AGGREGATE" #98FB98 {
+    class Patient <<Entity>> <<Root>>
+    class FirstName <<Value Object>>
+    class LastName <<Value Object>>
+    class FullName <<Value Object>>
+    class Birth <<Value Object>>
+    class Gender <<Value Object>>
+    class MedicalRecordNumber <<Value Object>>
+    class ContactInformation <<Value Object>>
+    class Email <<Value Object>>
+    class AllergiesMedicalCondition <<Value Object>>
+    class EmergencyContact <<Value Object>>
+    class AppointmentHistory <<Value Object>>
+
+    Patient "1..*" --> "1"  FirstName
+    Patient "1..*"  --> "1" LastName
+    Patient "1" --> "1" FullName
+    Patient "1..*" --> "1" Birth
+    Patient "1..*" --> "1" Gender
+    Patient "1" --> "1" MedicalRecordNumber
+    Patient "1"--> "1" ContactInformation
+    Patient "1"--> "1" Email
+    Patient "1"--> "1" AllergiesMedicalCondition
+    Patient "1"--> "1" EmergencyContact
+    Patient "1"-->"1" AppointmentHistory
+}
+
+package "STAFF AGGREGATE" #87CEFA {
+    class Staff <<Entity>> <<Root>>
+    class FirstName <<Value Object>>
+    class LastName <<Value Object>>
+    class FullName <<Value Object>>
+    class Role <<Value Object>>
+    class LicenseNumber <<Value Object>>
+    class Specialization <<Value Object>>
+    class PhoneNumber <<Value Object>>
+    class Email <<Value Object>>
+    class AvailabilitySlots <<Value Object>>
+
+    Staff "1..*" --> "1" FirstName
+    Staff "1..*" --> "1" LastName
+    Staff "1" --> "1" FullName
+    Staff "1" --> "1" LicenseNumber
+    Staff "1..*"--> "1" Role
+    Staff "1..*"--> "1" Specialization
+    Staff "1" --> "1" PhoneNumber
+    Staff "1" --> "1" Email
+    Staff "1" --> "*" AvailabilitySlots
+}
+
+package "OPERATION REQUEST AGGREGATE" #DDA0DD {
+    class OperationRequest <<Entity>> <<Root>>
+    class ID <<Value Object>>
+    class PatientID <<Value Object>>
+    class DoctorID <<Value Object>>
+    class OperationTypeID <<Value Object>>
+    class Deadline <<Value Object>>
+    class Priority <<Enum>>
+
+    OperationRequest "1" --> "1" ID
+    OperationRequest "1..*" --> "1" PatientID
+    OperationRequest "1..*" --> "1" DoctorID
+    OperationRequest "1..*" --> "1" OperationTypeID
+    OperationRequest "1..*" --> "1" Deadline
+    OperationRequest "1..*" --> "1" Priority
+}
+
+package "OPERATION TYPE AGGREGATE" #AFEEEE {
+    class OperationType <<Entity>> <<Root>>
+    class OperationName <<Value Object>>
+    class RequiredStaff <<Value Object>>
+    class EstimatedDuration <<Value Object>>
+
+    OperationType "1" --> "1" OperationName
+    OperationType "1..*"--> "1..*" RequiredStaff
+    OperationType "1" --> "1" EstimatedDuration
+}
+
+package "APPOINTMENT AGGREGATE" #F0E68C {
+    class Appointment <<Entity>> <<Root>>
+    class ID <<Value Object>>
+    class RequestID <<Value Object>>
+    class RoomID <<Value Object>>
+    class DateTime <<Value Object>>
+    class Status <<Enum>>
+
+    Appointment "1" --> "1" ID
+    Appointment "1" --> "1" RequestID
+    Appointment "1..*" --> "1" RoomID
+    Appointment "1" --> "1" DateTime
+    Appointment "1..*" --> "1" Status
+}
+
+package "SURGERY ROOM AGGREGATE" #D8BFD8 {
+    class SurgeryRoom <<Entity>> <<Root>>
+    class RoomNumber <<Value Object>>
+    class Type <<Value Object>>
+    class Capacity <<Value Object>>
+    class AssignedEquipment <<Value Object>>
+    class CurrentStatus <<Enum>>
+    class MaintenanceSlots <<Value Object>>
+
+    SurgeryRoom "1" --> "1" RoomNumber
+    SurgeryRoom "1" --> "1" Type
+    SurgeryRoom "1" --> "1" Capacity
+    SurgeryRoom "1..*" --> "1" AssignedEquipment
+    SurgeryRoom "1..*" --> "1" CurrentStatus
+    SurgeryRoom "1" --> "1" MaintenanceSlots
+}
+
+User "1" -down---> "1" Patient : can be a
+User "1" -down---> "1" Staff: can be a
+
+Staff "1" --> "1...*" OperationRequest: makes an (doctor)
+Staff "1" ---> "1...*" Specialization: has a
+Patient "1" ---> "1...*" OperationRequest: has an
+
+OperationType "1" <-up- "1...*" OperationRequest: for a
+OperationType "0...*" --> "1..*" Specialization : requests a
+OperationRequest "1" --> "1" Appointment: sets an
+Appointment "1...*" --> "1" SurgeryRoom: has a
+
+Appointment "0...*" --> "1...*" Staff : requests
+
+@enduml
